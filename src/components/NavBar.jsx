@@ -34,12 +34,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md shadow-xs">
       <div
         dir="ltr"
-        className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
+        className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8"
       >
+        {/* يسار الشريط: اللوجو */}
         <a
           href="#hero"
           onClick={scrollToTop}
-          className="inline-flex shrink-0 items-center gap-2.5 text-lg font-extrabold tracking-wide text-slate-900 uppercase"
+          className="inline-flex shrink-0 items-center gap-2 text-base font-extrabold tracking-wide text-slate-900 uppercase sm:gap-2.5 sm:text-lg"
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600 text-sm font-black text-white shadow-xs">
             H
@@ -47,6 +48,7 @@ export default function Navbar() {
           <span>{t.brand}</span>
         </a>
 
+        {/* الروابط متقاربة جنب بعض */}
         <nav className="hidden items-center gap-6 lg:flex">
           {t.nav.map((link) => (
             <a
@@ -60,6 +62,7 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* أقصى اليمين (ديسكتوب): الاتصال + زر تبديل اللغة */}
         <div className="hidden shrink-0 items-center gap-2.5 md:flex">
           <a
             href={`tel:${t.callNumber.replace(/\s+/g, "")}`}
@@ -86,15 +89,29 @@ export default function Navbar() {
           </button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
-          aria-label="Toggle Menu"
-          className="rounded-lg border border-slate-200 p-2 text-slate-700 hover:bg-slate-50 md:hidden"
-        >
-          <span className="text-lg leading-none">{isOpen ? "✕" : "☰"}</span>
-        </button>
+        {/* أزرار الموبايل: زر الترجمة ظاهر مباشرة + زر القائمة */}
+        <div className="flex shrink-0 items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="flex cursor-pointer items-center gap-1 rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-bold text-slate-800 transition hover:border-indigo-600 hover:text-indigo-600"
+          >
+            <span>文/A</span>
+            <span>{t.toggleBtn}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-label="Toggle Menu"
+            className="rounded-lg border border-slate-200 p-2 text-slate-700 hover:bg-slate-50"
+          >
+            <span className="text-lg leading-none">{isOpen ? "✕" : "☰"}</span>
+          </button>
+        </div>
       </div>
+
+      {/* قائمة الموبايل */}
       {isOpen && (
         <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
@@ -108,19 +125,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-
-            <div className="mt-2 flex items-center gap-2 border-t border-slate-100 pt-3">
-              <button
-                type="button"
-                onClick={() => {
-                  toggleLang();
-                  setIsOpen(false);
-                }}
-                className="flex-1 rounded-lg border border-slate-300 px-3.5 py-2 text-center text-xs font-bold text-slate-800 hover:border-indigo-600 hover:text-indigo-600"
-              >
-                {t.toggleBtn}
-              </button>
-            </div>
           </div>
         </div>
       )}
