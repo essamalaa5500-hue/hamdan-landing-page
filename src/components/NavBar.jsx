@@ -36,7 +36,6 @@ export default function Navbar() {
         dir="ltr"
         className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6 lg:px-8"
       >
-        {/* يسار الشريط: اللوجو */}
         <a
           href="#hero"
           onClick={scrollToTop}
@@ -48,7 +47,6 @@ export default function Navbar() {
           <span>{t.brand}</span>
         </a>
 
-        {/* الروابط متقاربة جنب بعض */}
         <nav className="hidden items-center gap-6 lg:flex">
           {t.nav.map((link) => (
             <a
@@ -62,7 +60,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* أقصى اليمين (ديسكتوب): الاتصال + زر تبديل اللغة */}
         <div className="hidden shrink-0 items-center gap-2.5 md:flex">
           <a
             href={`tel:${t.callNumber.replace(/\s+/g, "")}`}
@@ -89,7 +86,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* أزرار الموبايل: زر الترجمة ظاهر مباشرة + زر القائمة */}
         <div className="flex shrink-0 items-center gap-2 md:hidden">
           <button
             type="button"
@@ -111,7 +107,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* قائمة الموبايل */}
       {isOpen && (
         <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
